@@ -1,0 +1,13 @@
+<?xml version ="1.0" encoding= "UTF-8" ?>
+<c3p0-config>
+    <!-- 默认配置，c3p0框架默认加载这段默认配置 -->
+    <default-config>
+        <!-- 配置JDBC 四个基本属性 -->
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql://localhost:3306/h1024h</property>
+        <property name="user">admin</property>
+        <property name="password">admin@123</property>
+        <property name="initialPoolSize">5</property>
+        <property name="maxPoolSize">20</property>
+    </default-config> <!-- This app is massive! -->
+</c3p0-config>

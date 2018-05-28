@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="H1024H_JavaEE:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/H1024H_JavaEE_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="H1024H_JavaEE/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="H1024H_JavaEE" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
