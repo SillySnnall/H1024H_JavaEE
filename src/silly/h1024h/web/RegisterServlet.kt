@@ -1,6 +1,5 @@
 package silly.h1024h.web
 
-import org.apache.commons.beanutils.BeanUtils
 import silly.h1024h.base.BaseServlet
 import silly.h1024h.common.ErrorEnumMsg
 import silly.h1024h.common.ErrorEnumParam
@@ -33,16 +32,16 @@ class RegisterServlet : BaseServlet<User>() {
             return
         }
         // 电话号码判断
-        if (!Util.isPhone(model.getuName())) {
+        if (!Util.isPhone(model.name)) {
             // 邮箱判断
-            if (!Util.isEmail(model.getuName())) {
+            if (!Util.isEmail(model.name)) {
                 failData(ErrorEnumMsg.error1005, ErrorEnumParam.error1005)
                 return
             } else {
-                model.setuEmail(model.getuName())
+                model.name = model.name
             }
         } else {
-            model.setuPhone(model.getuName())
+            model.phone = model.name
         }
         // 用户已存在
         if (registerService.isUser(model)) {
@@ -50,13 +49,13 @@ class RegisterServlet : BaseServlet<User>() {
             return
         }
         // 验证码过期
-        if (RedisUtil.getRu().get(model.getuName()).isNullOrEmpty()) {
+        if (RedisUtil.getRu().get(model.name).isNullOrEmpty()) {
             failData(ErrorEnumMsg.error1006, ErrorEnumParam.error1006)
             return
         }
         // 创建token和时间
-        model.setuToken(Util.getUUID())
-        model.setuCreateTime(Util.getCurrentDate())
+        model.token = Util.getUUID()
+        model.create_time = Util.getCurrentDate()
         // 用户保存失败
         if (!registerService.saveUser(model)) {
             failData(ErrorEnumMsg.error1001, ErrorEnumParam.error1001)
@@ -64,11 +63,12 @@ class RegisterServlet : BaseServlet<User>() {
         }
         // 查找注册用户，返回数据
         val registerUser = registerService.getRegisterUser(model)
-        val map = BeanUtils.describe(registerUser)// bean->Map
-        map.remove("uPassword")// 移除密码
-        map.remove("uCreateTime")// 移除创建时间
-        map.remove("class")// 移除map自带字段
-        successData(map)
+//        val map = BeanUtils.describe(registerUser)// bean->Map
+//        map.remove("uPassword")// 移除密码
+//        map.remove("uCreateTime")// 移除创建时间
+//        map.remove("class")// 移除map自带字段
+//        successData(map)
+        // TODO 未写完
         return
     }
 }

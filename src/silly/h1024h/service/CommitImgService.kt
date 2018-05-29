@@ -6,11 +6,10 @@ import org.apache.commons.fileupload.FileItem
 import org.apache.commons.fileupload.disk.DiskFileItemFactory
 import org.apache.commons.fileupload.servlet.ServletFileUpload
 import silly.h1024h.common.Config.RES_PATH
-import silly.h1024h.dao.ResDataDataDao
+import silly.h1024h.dao.ResDataDao
 import silly.h1024h.service.impl.CommitImgServiceImpl
 import silly.h1024h.utils.FileUtil
 import java.io.File
-import javax.servlet.http.HttpServletRequest
 
 class CommitImgService : CommitImgServiceImpl {
 
@@ -18,7 +17,7 @@ class CommitImgService : CommitImgServiceImpl {
         return imgResDao.findByIrCoverIrDetails(1, irDetails).isNotEmpty()
     }
 
-    private val imgResDao = ResDataDataDao()
+    private val imgResDao = ResDataDao()
 
     override fun saveImg(imgRes: ImgRes): Boolean {
         val findByDetails = imgResDao.findByDetails(imgRes.irDetails)

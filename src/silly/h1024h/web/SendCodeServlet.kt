@@ -31,9 +31,9 @@ class SendCodeServlet : BaseServlet<User>() {
             return
         }
         // 电话号码判断
-        if (!Util.isPhone(model.getuName())) {
+        if (!Util.isPhone(model.name)) {
             // 邮箱判断
-            if (!Util.isEmail(model.getuName())) {
+            if (!Util.isEmail(model.name)) {
                 failData(ErrorEnumMsg.error1005, ErrorEnumParam.error1005)
                 return
             } else {
@@ -43,10 +43,10 @@ class SendCodeServlet : BaseServlet<User>() {
                     return
                 }
                 // 发送邮箱验证码
-                val code = EmailUtil.sendCodeEmail(model.getuName())
+                val code = EmailUtil.sendCodeEmail(model.name)
                 // 存储验证码，30分钟失效
-                RedisUtil.getRu().setex(model.getuName(), code, 1800)
-                val map = mapOf("uEmail" to model.getuName())
+                RedisUtil.getRu().setex(model.name, code, 1800)
+                val map = mapOf("uEmail" to model.name)
                 successData(map)
                 return
             }

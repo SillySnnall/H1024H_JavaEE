@@ -8,7 +8,12 @@ import java.io.Serializable
  */
 data class ResData(
         var name: String = "",
+        var type: String = "",
         var file: String = "",
         var img_url: String = "",
         var net_url: String = "",
-        var _id: Int = 0) : Serializable
+        var _id: Int = 0){
+    override fun toString(): String {
+        return super.toString()
+    }
+}

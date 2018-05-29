@@ -1,7 +1,7 @@
 package silly.h1024h.web
 
 import silly.h1024h.base.BaseServlet
-import silly.h1024h.service.ImgResService
+import silly.h1024h.service.ResDataService
 
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServletRequest
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse
 
 @WebServlet(name = "CoverImgServlet", urlPatterns = ["/getCoverImg"])
 class CoverImgServlet : BaseServlet<ImgRes>() {
-    private val imgResService = ImgResService()
+    private val imgResService = ResDataService()
     override fun getModel(): ImgRes? {
         return ImgRes()
     }
