@@ -6,15 +6,10 @@ interface RegisterServiceImpl {
     /**
      * 保存注册用户
      */
-    fun saveUser(user: User): Boolean
+    fun saveUser(user: User): String
 
     /**
      * 查询用户是否存在
      */
     fun isUser(user: User): Boolean
-
-    /**
-     * 获取注册用户
-     */
-    fun getRegisterUser(user: User): User?
 }

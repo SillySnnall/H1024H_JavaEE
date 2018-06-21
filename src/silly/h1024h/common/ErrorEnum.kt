@@ -10,6 +10,8 @@ object ErrorEnumMsg {
     var error1006: Int = 1006
     var error1007: Int = 1007
     var error1008: Int = 1008
+    var error1009: Int = 1009
+    var error1010: Int = 1010
 }
 
 object ErrorEnumParam {
@@ -22,4 +24,6 @@ object ErrorEnumParam {
     var error1006: String = "验证码已过期"
     var error1007: String = "上传失败"
     var error1008: String = "计数失败"
+    var error1009: String = "帐号必须是8-16位数字或字母"
+    var error1010: String = "密码必须是8-16位数字和字母的组合"
 }

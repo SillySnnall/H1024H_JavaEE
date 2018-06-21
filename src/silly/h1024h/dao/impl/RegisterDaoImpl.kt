@@ -2,14 +2,14 @@ package silly.h1024h.dao.impl
 
 import silly.h1024h.entity.User
 
-interface RegisterDaoImpl{
+interface RegisterDaoImpl {
     /**
      * 保存注册用户
      */
-    fun saveUser(user: User)
+    fun saveUser(params: Array<Any>):Boolean
 
     /**
      * 根据用户名查找
      */
-    fun findFor_uname(user: User): List<User>
+    fun findByName(account: String): List<User>
 }

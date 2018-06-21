@@ -50,4 +50,19 @@ object Util {
         }
         return numStr.toString()
     }
+
+
+    /**
+     * 帐号正则
+     */
+    fun accountRegex(account: String): Boolean {
+        return Pattern.matches("^[A-Za-z0-9]{8,16}\$", account)
+    }
+
+    /**
+     * 密码正则
+     */
+    fun passwordRegex(password: String): Boolean {
+        return Pattern.matches("^(?![0-9]+\$)(?![a-zA-Z]+\$)[0-9A-Za-z]{8,16}\$", password)
+    }
 }

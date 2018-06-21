@@ -8,6 +8,8 @@ import silly.h1024h.isentity.IsEmptyUser
 import silly.h1024h.service.RegisterService
 import silly.h1024h.utils.RedisUtil
 import silly.h1024h.utils.Util
+import silly.h1024h.utils.Util.accountRegex
+import silly.h1024h.utils.Util.passwordRegex
 
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServletRequest
@@ -25,50 +27,30 @@ class RegisterServlet : BaseServlet<User>() {
      * 注册
      */
     override fun doWork(request: HttpServletRequest, response: HttpServletResponse, model: User?) {
-        // 判空
+        // 判断帐号密码为空
         val isUser = IsEmptyUser.isUser(model!!)
         if (isUser.isNotEmpty()) {
             failData(ErrorEnumMsg.error1002, isUser)
             return
         }
-        // 电话号码判断
-        if (!Util.isPhone(model.name)) {
-            // 邮箱判断
-            if (!Util.isEmail(model.name)) {
-                failData(ErrorEnumMsg.error1005, ErrorEnumParam.error1005)
-                return
-            } else {
-                model.name = model.name
-            }
-        } else {
-            model.phone = model.name
+        // 帐号正则判断
+        if (!accountRegex(model.account)) {
+            failData(ErrorEnumMsg.error1009, ErrorEnumParam.error1009)
+            return
         }
-        // 用户已存在
+        // 密码正则判断
+        if (!passwordRegex(model.password)) {
+            failData(ErrorEnumMsg.error1010, ErrorEnumParam.error1010)
+            return
+        }
+        // 判断用户是否存在
         if (registerService.isUser(model)) {
             failData(ErrorEnumMsg.error1000, ErrorEnumParam.error1000)
             return
         }
-        // 验证码过期
-        if (RedisUtil.getRu().get(model.name).isNullOrEmpty()) {
-            failData(ErrorEnumMsg.error1006, ErrorEnumParam.error1006)
-            return
-        }
-        // 创建token和时间
-        model.token = Util.getUUID()
-        model.create_time = Util.getCurrentDate()
-        // 用户保存失败
-        if (!registerService.saveUser(model)) {
-            failData(ErrorEnumMsg.error1001, ErrorEnumParam.error1001)
-            return
-        }
-        // 查找注册用户，返回数据
-        val registerUser = registerService.getRegisterUser(model)
-//        val map = BeanUtils.describe(registerUser)// bean->Map
-//        map.remove("uPassword")// 移除密码
-//        map.remove("uCreateTime")// 移除创建时间
-//        map.remove("class")// 移除map自带字段
-//        successData(map)
-        // TODO 未写完
-        return
+        // 存储用户
+        val saveUser = registerService.saveUser(model)
+        if (saveUser.isEmpty()) failData(ErrorEnumMsg.error1001, ErrorEnumParam.error1001)
+        else successData(saveUser)
     }
 }

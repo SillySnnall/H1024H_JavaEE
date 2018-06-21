@@ -8,9 +8,8 @@ import silly.h1024h.entity.User
 object IsEmptyUser {
 
     fun isUser(user: User): String {
-//        if (user.getuName().isNullOrEmpty()) return "请填写用户名"
-//        if (user.getuPassword().isNullOrEmpty()) return "请填写密码"
-        if (user.code == 0) return "请填写验证码"
+        if (user.account.isEmpty()) return "请填写用户名"
+        if (user.password.isEmpty()) return "请填写密码"
         return ""
     }
 
