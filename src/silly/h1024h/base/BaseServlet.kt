@@ -1,9 +1,7 @@
 package silly.h1024h.base
 
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import org.apache.commons.beanutils.BeanUtils
-
 import javax.servlet.ServletException
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
@@ -93,10 +91,14 @@ abstract class BaseServlet<T> : HttpServlet() {
      */
     fun successData(str: String) {
         val writer = response.writer
-        writer.write(Gson().toJson(SuccessData(0, "msgok", str)))
+        if (str.isNotEmpty() && (str.substring(0, 1) == "[" || str.substring(0, 1) == "{"))
+            writer.write("{\"msg\": 0,\"param\": \"msgok\",\"data\": $str}")
+        else
+            writer.write(Gson().toJson(SuccessData(0, "msgok", str)))
         writer.flush()
         writer.close()
     }
+
 
     /**
      * 返回失败的数据

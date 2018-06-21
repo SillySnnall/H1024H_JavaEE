@@ -7,6 +7,7 @@ import silly.h1024h.service.impl.GetIrDetailsServiceImpl
 class GetIrDetailsService : GetIrDetailsServiceImpl {
     private val imgResDao = ResDataDao()
     override fun getIrDetails(): List<String> {
-        return imgResDao.findAllDetailsOnly()
+//        return imgResDao.findAllDetailsOnly()
+        return arrayListOf()
     }
 }

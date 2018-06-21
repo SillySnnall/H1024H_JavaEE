@@ -7,11 +7,12 @@ import silly.h1024h.dao.impl.RegisterDaoImpl
 
 class UserDao : BaseDao(), RegisterDaoImpl {
     override fun findFor_uname(user: User): List<User> {
-        return getSession().createQuery("from User where uName = ?").setParameter(0, user.getuName()).list() as List<User>
+//        return getSession().createQuery("from User where uName = ?").setParameter(0, user.getuName()).list() as List<User>
+        return arrayListOf()
     }
 
     override fun saveUser(user: User) {
-        getSession().save(user)
+//        getSession().save(user)
     }
 
 }
