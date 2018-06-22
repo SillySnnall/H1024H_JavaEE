@@ -38,7 +38,7 @@ class SendCodeServlet : BaseServlet<User>() {
 //                return
 //            } else {
 //                // 用户已存在
-//                if (registerService.isUser(model)) {
+//                if (registerService.getUser(model)) {
 //                    failData(ErrorEnumMsg.error1000, ErrorEnumParam.error1000)
 //                    return
 //                }
@@ -52,7 +52,7 @@ class SendCodeServlet : BaseServlet<User>() {
 //            }
 //        } else {
 //            // 用户已存在
-//            if (registerService.isUser(model)) {
+//            if (registerService.getUser(model)) {
 //                failData(ErrorEnumMsg.error1000, ErrorEnumParam.error1000)
 //                return
 //            }

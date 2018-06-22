@@ -26,9 +26,9 @@ class RegisterServlet2 : BaseServlet<User>() {
      */
     override fun doWork(request: HttpServletRequest, response: HttpServletResponse, model: User?) {
 //        // 判空
-//        val isUser = IsEmptyUser.isUser(model!!)
-//        if (isUser.isNotEmpty()) {
-//            failData(ErrorEnumMsg.error1002, isUser)
+//        val getUser = IsEmptyUser.getUser(model!!)
+//        if (getUser.isNotEmpty()) {
+//            failData(ErrorEnumMsg.error1002, getUser)
 //            return
 //        }
 //        // 电话号码判断
@@ -44,7 +44,7 @@ class RegisterServlet2 : BaseServlet<User>() {
 //            model.phone = model.name
 //        }
 //        // 用户已存在
-//        if (registerService.isUser(model)) {
+//        if (registerService.getUser(model)) {
 //            failData(ErrorEnumMsg.error1000, ErrorEnumParam.error1000)
 //            return
 //        }
@@ -57,7 +57,7 @@ class RegisterServlet2 : BaseServlet<User>() {
 //        model.token = Util.getUUID()
 //        model.create_time = Util.getCurrentDate()
 //        // 用户保存失败
-//        if (!registerService.saveUser(model)) {
+//        if (!registerService.getUser(model)) {
 //            failData(ErrorEnumMsg.error1001, ErrorEnumParam.error1001)
 //            return
 //        }

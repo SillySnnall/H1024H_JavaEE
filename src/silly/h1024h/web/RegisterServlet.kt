@@ -6,8 +6,6 @@ import silly.h1024h.common.ErrorEnumParam
 import silly.h1024h.entity.User
 import silly.h1024h.isentity.IsEmptyUser
 import silly.h1024h.service.RegisterService
-import silly.h1024h.utils.RedisUtil
-import silly.h1024h.utils.Util
 import silly.h1024h.utils.Util.accountRegex
 import silly.h1024h.utils.Util.passwordRegex
 

@@ -12,4 +12,9 @@ interface RegisterDaoImpl {
      * 根据用户名查找
      */
     fun findByName(account: String): List<User>
+
+    /**
+     * 更新Token
+     */
+    fun updateToken(account: String,token: String): Boolean
 }

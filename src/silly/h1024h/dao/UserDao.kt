@@ -11,6 +11,18 @@ import java.sql.SQLException
 
 
 class UserDao : BaseDao(), RegisterDaoImpl {
+    override fun updateToken(account: String,token: String): Boolean {
+        try {
+            val sql = "UPDATE user SET token='$token' WHERE account='$account';"
+            getQueryRunner().update(sql)
+            return true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            System.out.println(e)
+        }
+        return false
+    }
+
     override fun findByName(account: String): List<User> {
         try {
             val sql = "SELECT * FROM user WHERE account='$account'"
@@ -24,7 +36,7 @@ class UserDao : BaseDao(), RegisterDaoImpl {
 
     override fun saveUser(params: Array<Any>): Boolean {
         try {
-            val sql = "INSERT INTO user ( _id, account, password, create_time ) VALUES ( null, ${params[0]}, ${params[1]}, ${params[2]} );"
+            val sql = "INSERT INTO user ( _id, account, password, create_time, token ) VALUES ( null, ${params[0]}, ${params[1]}, ${params[2]}, ${params[3]} );"
             getQueryRunner().update(sql)
             return true
         } catch (e: Exception) {
