@@ -21,7 +21,7 @@ class LoginService : LoginServiceImpl {
         else {
             dbUser.token = Util.getUUID()
             userDao.updateToken(dbUser.account, dbUser.token)
-            StringBuilder().append("{\"account\":\"${dbUser.account}\",\"token\":\"${dbUser.token}\",\"create_time\":\"${dbUser.create_time}\"}").toString()
+            StringBuilder().append("{\"account\":\"${dbUser.account}\",\"email\":\"${dbUser.email}\",\"token\":\"${dbUser.token}\",\"create_time\":\"${dbUser.create_time}\"}").toString()
         }
 
 

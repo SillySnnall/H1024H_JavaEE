@@ -6,6 +6,11 @@ import silly.h1024h.dao.HotDao
 import silly.h1024h.dao.ResDataDao
 import silly.h1024h.dao.TypeListDao
 import silly.h1024h.utils.UrlReqUtil
+import java.util.*
+import java.util.Locale
+import java.text.SimpleDateFormat
+
+
 
 
 class CommonTest {

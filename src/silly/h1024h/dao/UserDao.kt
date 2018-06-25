@@ -36,7 +36,7 @@ class UserDao : BaseDao(), RegisterDaoImpl {
 
     override fun saveUser(params: Array<Any>): Boolean {
         try {
-            val sql = "INSERT INTO user ( _id, account, password, create_time, token ) VALUES ( null, ${params[0]}, ${params[1]}, ${params[2]}, ${params[3]} );"
+            val sql = "INSERT INTO user ( _id, account, password, email, create_time, token ) VALUES ( null, ${params[0]}, ${params[1]}, '', ${params[2]}, ${params[3]} );"
             getQueryRunner().update(sql)
             return true
         } catch (e: Exception) {

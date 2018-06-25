@@ -14,6 +14,7 @@ object ErrorEnumMsg {
     var error1010: Int = 1010
     var error1011: Int = 1011
     var error1012: Int = 1012
+    var error1013: Int = 1013
 }
 
 object ErrorEnumParam {
@@ -30,4 +31,5 @@ object ErrorEnumParam {
     var error1010: String = "密码必须是8-16位数字和字母的组合"
     var error1011: String = "用户不存在，请注册"
     var error1012: String = "密码错误"
+    var error1013: String = "提交失败"
 }

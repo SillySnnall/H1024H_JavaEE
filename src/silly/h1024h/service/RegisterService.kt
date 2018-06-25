@@ -14,7 +14,7 @@ class RegisterService : RegisterServiceImpl {
         user.token = Util.getUUID()
         val params = arrayOf<Any>("'${user.account}'", "'${user.password}'", "'${user.create_time}'", "'${user.token}'")
         return if (userDao.saveUser(params))
-            StringBuilder().append("{\"account\":\"${user.account}\",\"token\":\"${user.token}\",\"create_time\":\"${user.create_time}\"}").toString()
+            StringBuilder().append("{\"account\":\"${user.account}\",\"email\":\"${user.email}\",\"token\":\"${user.token}\",\"create_time\":\"${user.create_time}\"}").toString()
         else ""
     }
 
