@@ -21,7 +21,7 @@ public class RedisUtil {
 
 	private RedisUtil() {
 		if (pool == null) {
-			String ip = "localhost";
+			String ip = "www.h1024h.top";
 			int port = 6379;
 			JedisPoolConfig config = new JedisPoolConfig();
 			// 控制一个pool可分配多少个jedis实例，通过pool.getResource()来获取；

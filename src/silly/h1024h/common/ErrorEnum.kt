@@ -15,6 +15,9 @@ object ErrorEnumMsg {
     var error1011: Int = 1011
     var error1012: Int = 1012
     var error1013: Int = 1013
+    var error1014: Int = 1014
+    var error1015: Int = 1015
+    var error1016: Int = 1016
 }
 
 object ErrorEnumParam {
@@ -32,4 +35,7 @@ object ErrorEnumParam {
     var error1011: String = "用户不存在，请注册"
     var error1012: String = "密码错误"
     var error1013: String = "提交失败"
+    var error1014: String = "验证码错误"
+    var error1015: String = "绑定失败"
+    var error1016: String = "验证码发送失败"
 }

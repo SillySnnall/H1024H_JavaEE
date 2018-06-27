@@ -6,7 +6,7 @@ interface RegisterDaoImpl {
     /**
      * 保存注册用户
      */
-    fun saveUser(params: Array<Any>):Boolean
+    fun saveUser(params: Array<Any>): Boolean
 
     /**
      * 根据用户名查找
@@ -16,5 +16,10 @@ interface RegisterDaoImpl {
     /**
      * 更新Token
      */
-    fun updateToken(account: String,token: String): Boolean
+    fun updateToken(account: String, token: String): Boolean
+
+    /**
+     * 存储email
+     */
+    fun saveEmail(account: String, email: String): Boolean
 }

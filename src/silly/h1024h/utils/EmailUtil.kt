@@ -17,7 +17,7 @@ object EmailUtil {
         // 创建邮件配置
         val props = Properties()
         props.setProperty("mail.transport.protocol", "smtp") // 使用的协议（JavaMail规范要求）
-        props.setProperty("mail.smtp.host", "smtp.gmail.com") // 发件人的邮箱的 SMTP 服务器地址
+        props.setProperty("mail.smtp.host", "smtp.sina.cn") // 发件人的邮箱的 SMTP 服务器地址
         props.setProperty("mail.smtp.port", "465")
         props["mail.smtp.socketFactory.class"] = "javax.net.ssl.SSLSocketFactory"
         props.setProperty("mail.smtp.auth", "true") // 需要请求认证
@@ -40,7 +40,7 @@ object EmailUtil {
             // 根据会话创建邮件
             val msg = MimeMessage(session)
             // address邮件地址, personal邮件昵称, charset编码方式
-            val fromAddress = InternetAddress("sillysnnall@gmail.com", "H1024H管理员", "utf-8")
+            val fromAddress = InternetAddress("h1024h@sina.cn", "H1024H管理员", "utf-8")
             // 设置发送邮件方
             msg.setFrom(fromAddress)
             // 设置邮件接收方
@@ -59,7 +59,7 @@ object EmailUtil {
             msg.saveChanges()
             //获取传输通道
             transport = session?.transport
-            transport?.connect("smtp.gmail.com", "sillysnnall@gmail.com", "C0mputer0HK")
+            transport?.connect("h1024h@sina.cn", "h1024h@123")
             //连接，并发送邮件
             transport?.sendMessage(msg, msg.allRecipients)
             transport?.close()

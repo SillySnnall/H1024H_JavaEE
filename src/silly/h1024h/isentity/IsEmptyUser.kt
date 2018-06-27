@@ -13,8 +13,21 @@ object IsEmptyUser {
         return ""
     }
 
+    fun isBindEmail(user: User): String {
+        if (user.account.isEmpty()) return "请填写用户名"
+        if (user.email.isEmpty()) return "请填写邮箱"
+        if (user.code.isEmpty()) return "验证码为空"
+        return ""
+    }
+
     fun isSendCode(user: User): String {
-//        if (user.getuName().isNullOrEmpty()) return "请填写用户名"
+        if (user.account.isEmpty()) return "请填写用户名"
+        if (user.email.isEmpty()) return "请填写邮箱"
+        return ""
+    }
+
+    fun isGetUser(user: User): String {
+        if (user.account.isEmpty()) return "请填写用户名"
         return ""
     }
 }

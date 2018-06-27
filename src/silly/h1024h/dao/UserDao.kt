@@ -11,6 +11,18 @@ import java.sql.SQLException
 
 
 class UserDao : BaseDao(), RegisterDaoImpl {
+    override fun saveEmail(account: String, email: String): Boolean {
+        try {
+            val sql = "UPDATE user SET email='$email' WHERE account='$account';"
+            getQueryRunner().update(sql)
+            return true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            System.out.println(e)
+        }
+        return false
+    }
+
     override fun updateToken(account: String,token: String): Boolean {
         try {
             val sql = "UPDATE user SET token='$token' WHERE account='$account';"

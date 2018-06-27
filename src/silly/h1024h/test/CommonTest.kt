@@ -5,12 +5,11 @@ import org.junit.Test
 import silly.h1024h.dao.HotDao
 import silly.h1024h.dao.ResDataDao
 import silly.h1024h.dao.TypeListDao
+import silly.h1024h.utils.RedisUtil
 import silly.h1024h.utils.UrlReqUtil
 import java.util.*
 import java.util.Locale
 import java.text.SimpleDateFormat
-
-
 
 
 class CommonTest {
@@ -110,5 +109,10 @@ class CommonTest {
         for (data in sortHotData) {
             System.out.println(resDataDao.findByTypeCover(data.table_name, data.type).type)
         }
+    }
+
+    @Test
+    fun redis() {
+        RedisUtil.getRu().setex("qwe", "123", 1800)
     }
 }
