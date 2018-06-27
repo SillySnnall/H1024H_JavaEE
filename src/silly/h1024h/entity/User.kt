@@ -9,5 +9,7 @@ data class User(
         var token: String = "",
         var create_time: String = "",
         // 临时
-        var code: String = ""
+        var code: String = "",
+        var new_password: String = ""
+
 )

@@ -30,4 +30,11 @@ object IsEmptyUser {
         if (user.account.isEmpty()) return "请填写用户名"
         return ""
     }
+
+    fun isChangePwd(user: User): String {
+        if (user.account.isEmpty()) return "请填写用户名"
+        if (user.password.isEmpty()) return "请填写旧密码"
+        if (user.new_password.isEmpty()) return "请填写新密码"
+        return ""
+    }
 }

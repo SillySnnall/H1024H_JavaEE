@@ -19,6 +19,11 @@ interface RegisterDaoImpl {
     fun updateToken(account: String, token: String): Boolean
 
     /**
+     * 更新密码
+     */
+    fun updatePwd(account: String, password: String): Boolean
+
+    /**
      * 存储email
      */
     fun saveEmail(account: String, email: String): Boolean
