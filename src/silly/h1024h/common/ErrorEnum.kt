@@ -18,6 +18,8 @@ object ErrorEnumMsg {
     var error1014: Int = 1014
     var error1015: Int = 1015
     var error1016: Int = 1016
+    var error1017: Int = 1017
+    var error1018: Int = 1018
 }
 
 object ErrorEnumParam {
@@ -38,4 +40,6 @@ object ErrorEnumParam {
     var error1014: String = "验证码错误"
     var error1015: String = "绑定失败"
     var error1016: String = "验证码发送失败"
+    var error1017: String = "地址获取失败"
+    var error1018: String = "参数不能为空"
 }

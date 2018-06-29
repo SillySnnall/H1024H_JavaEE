@@ -1,7 +1,9 @@
 package silly.h1024h.entity
 
 data class UrlData(
+        var _id: Int = 0,
+        var version_code: String = "",
         var channel: String = "",
-        var app_name:String="",
-        var app_version:String=""
-        )
+        var type: Int = 0,
+        var apk_url: String = ""
+)
