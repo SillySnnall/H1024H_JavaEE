@@ -2,6 +2,7 @@ package silly.h1024h.base
 
 import com.google.gson.Gson
 import org.apache.commons.beanutils.BeanUtils
+import silly.h1024h.utils.DesUtil
 import javax.servlet.ServletException
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import java.io.IOException
 import java.lang.reflect.InvocationTargetException
-import java.util.HashMap
 
 @WebServlet(name = "BaseServlet")
 abstract class BaseServlet<T> : HttpServlet() {
@@ -28,17 +28,20 @@ abstract class BaseServlet<T> : HttpServlet() {
     override fun doGet(request: HttpServletRequest, response: HttpServletResponse) {
         try {
             config(request, response)
-            val map = HashMap<String, Any>()
-            val mapParam = request.parameterMap
-            val set = mapParam.keys
+//            val map = HashMap<String, Any>()
+//            val mapParam = request.parameterMap
+//            val set = mapParam.keys
             System.out.println("----------Start----------")
             System.out.println("URL:${request.requestURL}")
-            for (aSet in set) {
-                val key = aSet as String
-                val value = request.getParameter(key)
-                map[key] = value
-                System.out.println("$key:$value")
-            }
+            val sign = request.getParameter("sign") ?: ""
+            val timestamp = request.getParameter("timestamp") ?: ""
+            val map = decryptData(sign, timestamp)// 解密
+//            for (aSet in set) {
+//                val key = aSet as String
+//                val value = request.getParameter(key)
+//                map[key] = value
+//                System.out.println("$key:$value")
+//            }
             System.out.println("----------End----------")
             if (getModel() != null) {
                 val model = getModel()
@@ -53,6 +56,24 @@ abstract class BaseServlet<T> : HttpServlet() {
             e.printStackTrace()
         }
 
+    }
+
+    /**
+     * 解密数据
+     */
+    private fun decryptData(sign: String, timestamp: String): Map<String, String> {
+        val map = mutableMapOf<String, String>()
+        if (sign.isNotEmpty() && timestamp.isNotEmpty()) {
+            var decrypt = DesUtil.decrypt(sign)
+            decrypt = DesUtil.decrypt(decrypt, timestamp)
+            val split = decrypt.split(",")
+            for (kvs in split) {
+                val kv = kvs.split("=")
+                map[kv[0]] = kv[1]
+                System.out.println("${kv[0]}:${kv[1]}")
+            }
+        }
+        return map
     }
 
     abstract fun doWork(request: HttpServletRequest, response: HttpServletResponse, model: T?)
@@ -71,7 +92,7 @@ abstract class BaseServlet<T> : HttpServlet() {
      */
     fun successData(map: Map<String, Any>) {
         val writer = response.writer
-        writer.write(Gson().toJson(SuccessMap(0, "msgok", map)))
+        writer.write(DesUtil.encrypt(Gson().toJson(SuccessMap(0, "msgok", map))))
         writer.flush()
         writer.close()
     }
@@ -81,7 +102,7 @@ abstract class BaseServlet<T> : HttpServlet() {
      */
     fun successData(list: List<Any>) {
         val writer = response.writer
-        writer.write(Gson().toJson(SuccessDataList(0, "msgok", list)))
+        writer.write(DesUtil.encrypt(Gson().toJson(SuccessDataList(0, "msgok", list))))
         writer.flush()
         writer.close()
     }
@@ -92,9 +113,9 @@ abstract class BaseServlet<T> : HttpServlet() {
     fun successData(str: String) {
         val writer = response.writer
         if (str.isNotEmpty() && (str.substring(0, 1) == "[" || str.substring(0, 1) == "{"))
-            writer.write("{\"msg\": 0,\"param\": \"msgok\",\"data\": $str}")
+            writer.write(DesUtil.encrypt("{\"msg\": 0,\"param\": \"msgok\",\"data\": $str}"))
         else
-            writer.write(Gson().toJson(SuccessData(0, "msgok", str)))
+            writer.write(DesUtil.encrypt(Gson().toJson(SuccessData(0, "msgok", str))))
         writer.flush()
         writer.close()
     }
@@ -105,7 +126,7 @@ abstract class BaseServlet<T> : HttpServlet() {
      */
     fun failData(msg: Int, param: String) {
         val writer = response.writer
-        writer.write(Gson().toJson(FailData(msg, param)))
+        writer.write(DesUtil.encrypt(Gson().toJson(FailData(msg, param))))
         writer.flush()
         writer.close()
     }

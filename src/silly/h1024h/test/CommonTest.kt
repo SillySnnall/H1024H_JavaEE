@@ -1,15 +1,11 @@
 package silly.h1024h.test
 
-import com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table
 import org.junit.Test
 import silly.h1024h.dao.HotDao
 import silly.h1024h.dao.ResDataDao
 import silly.h1024h.dao.TypeListDao
-import silly.h1024h.utils.RedisUtil
-import silly.h1024h.utils.UrlReqUtil
+import silly.h1024h.utils.*
 import java.util.*
-import java.util.Locale
-import java.text.SimpleDateFormat
 
 
 class CommonTest {
@@ -114,5 +110,19 @@ class CommonTest {
     @Test
     fun redis() {
         RedisUtil.getRu().setex("qwe", "123", 1800)
+    }
+    @Test
+    fun sign(){
+        val str = "哈哈哈,123!qweasdzc"
+        val encode = DesUtil.encrypt(str)
+        System.out.println("加密: $encode")
+        val decode = DesUtil.decrypt(encode)
+        System.out.println("解密: $decode")
+    }
+
+    @Test
+    fun time(){
+        val uuid = System.currentTimeMillis()/1000
+        System.out.println("解密: $uuid")
     }
 }
