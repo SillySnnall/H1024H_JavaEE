@@ -6,7 +6,7 @@ import silly.h1024h.dao.UrlDataDao
 import silly.h1024h.entity.UrlData
 import javax.servlet.http.HttpServletResponse
 
-class GetMainUrlService(response: HttpServletResponse, map: Map<String, String>) : BaseService<UrlData>(response, map, UrlData()) {
+class GetMainUrlService(response: HttpServletResponse, map: Map<String, Any>) : BaseService<UrlData>(response, map, UrlData()) {
     override fun isEmpty(): Boolean {
         if (model.version_code.isEmpty() || model.channel.isEmpty()) return failData(1018, ERROR_MAP[1018]?: "")
         return true

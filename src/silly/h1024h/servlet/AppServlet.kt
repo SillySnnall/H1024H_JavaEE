@@ -41,7 +41,20 @@ class AppServlet : HttpServlet() {
                 // 接口选择
                 whenAc(map, response)
             } else {
-                // web
+                //TODO web
+//                val map = HashMap<String, Any>()
+//                val mapParam = request.parameterMap
+//                val set = mapParam.keys
+//                System.out.println("----------Start----------")
+//                System.out.println("URL:${request.requestURL}")
+//                for (aSet in set) {
+//                    val key = aSet as String
+//                    val value = request.getParameter(key)
+//                    map[key] = value
+//                    System.out.println("$key:$value")
+//                }
+//                System.out.println("-----------End-----------")
+//                whenAc(map, response)
             }
         } catch (e: IllegalAccessException) {
             e.printStackTrace()

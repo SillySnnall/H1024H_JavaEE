@@ -7,7 +7,7 @@ import silly.h1024h.entity.Opinion
 import silly.h1024h.utils.Util
 import javax.servlet.http.HttpServletResponse
 
-class OpinionService(response: HttpServletResponse, map: Map<String, String>) : BaseService<Opinion>(response, map, Opinion()) {
+class OpinionService(response: HttpServletResponse, map: Map<String, Any>) : BaseService<Opinion>(response, map, Opinion()) {
     override fun isEmpty(): Boolean {
         if (model.content.isEmpty() || model.account.isEmpty()) return failData(1018, ERROR_MAP[1018] ?: "")
         return true

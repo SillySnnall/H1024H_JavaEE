@@ -132,7 +132,7 @@ class CommonTest {
     @Test
     fun postR() {
         val mapOf = mapOf(
-                "ac" to "bind_email",
+                "ac" to "get_type_list",
                 "account" to "12121212"
         )
         val sb = StringBuilder()
@@ -146,6 +146,6 @@ class CommonTest {
         encryptData = DesUtil.encrypt(encryptData)// key加密
 
         val post = UrlReqUtil.post("http://192.168.100.168/app", "sign=$encryptData&timestamp=$nowTime")
-        System.out.println("post: $post")
+        System.out.println("post: ${DesUtil.decrypt(post)}")
     }
 }

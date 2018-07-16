@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse
 /**
  * 接口对应业务
  */
-fun whenAc(map: Map<String, String>, response: HttpServletResponse) {
+fun whenAc(map: Map<String, Any>, response: HttpServletResponse) {
     when (map["ac"]) {
         "get_main_url" -> GetMainUrlService(response, map)// 获取主地址
         "bind_email" -> BindEmailService(response, map)// 绑定邮箱

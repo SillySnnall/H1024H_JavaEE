@@ -10,7 +10,7 @@ import silly.h1024h.utils.RedisUtil
 import silly.h1024h.utils.Util
 import javax.servlet.http.HttpServletResponse
 
-class CoverImgService(response: HttpServletResponse, map: Map<String, String>) : BaseService<ResData>(response, map, ResData()) {
+class CoverImgService(response: HttpServletResponse, map: Map<String, Any>) : BaseService<ResData>(response, map, ResData()) {
 
     override fun isEmpty(): Boolean {
         if (model.table_name.isEmpty()) return failData(1018, ERROR_MAP[1018]

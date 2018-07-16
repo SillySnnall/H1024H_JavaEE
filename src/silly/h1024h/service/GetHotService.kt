@@ -6,7 +6,7 @@ import silly.h1024h.dao.ResDataDao
 import silly.h1024h.entity.ResData
 import javax.servlet.http.HttpServletResponse
 
-class GetHotService(response: HttpServletResponse, map: Map<String, String>) : BaseService<ResData>(response, map, ResData()) {
+class GetHotService(response: HttpServletResponse, map: Map<String, Any>) : BaseService<ResData>(response, map, ResData()) {
     override fun isEmpty(): Boolean {
         return true
     }

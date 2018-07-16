@@ -9,10 +9,9 @@ import silly.h1024h.dao.ResDataDao
 import silly.h1024h.dao.UserDao
 import silly.h1024h.entity.ResData
 import silly.h1024h.entity.User
-import silly.h1024h.isentity.IsEmptyUser
 import javax.servlet.http.HttpServletResponse
 
-class GetUserService(response: HttpServletResponse, map: Map<String, String>) : BaseService<User>(response, map, User()) {
+class GetUserService(response: HttpServletResponse, map: Map<String, Any>) : BaseService<User>(response, map, User()) {
     override fun isEmpty(): Boolean {
         if (model.account.isEmpty()) return failData(1018, ERROR_MAP[1018] ?: "")
         return true

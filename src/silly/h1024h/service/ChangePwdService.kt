@@ -7,7 +7,7 @@ import silly.h1024h.entity.User
 import silly.h1024h.utils.Util
 import javax.servlet.http.HttpServletResponse
 
-class ChangePwdService(response: HttpServletResponse, map: Map<String, String>) : BaseService<User>(response, map, User()) {
+class ChangePwdService(response: HttpServletResponse, map: Map<String, Any>) : BaseService<User>(response, map, User()) {
     override fun isEmpty(): Boolean {
         if (model.account.isEmpty() || model.password.isEmpty() || model.new_password.isEmpty()) return failData(1018, ERROR_MAP[1018]
                 ?: "")

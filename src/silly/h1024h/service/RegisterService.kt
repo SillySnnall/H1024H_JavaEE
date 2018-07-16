@@ -4,11 +4,10 @@ import silly.h1024h.base.BaseService
 import silly.h1024h.common.ERROR_MAP
 import silly.h1024h.entity.User
 import silly.h1024h.dao.UserDao
-import silly.h1024h.isentity.IsEmptyUser
 import silly.h1024h.utils.Util
 import javax.servlet.http.HttpServletResponse
 
-class RegisterService(response: HttpServletResponse, map: Map<String, String>) : BaseService<User>(response, map, User()) {
+class RegisterService(response: HttpServletResponse, map: Map<String, Any>) : BaseService<User>(response, map, User()) {
     override fun isEmpty(): Boolean {
         if (model.account.isEmpty() || model.password.isEmpty()) return failData(1018, ERROR_MAP[1018] ?: "")
         return true

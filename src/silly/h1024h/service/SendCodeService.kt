@@ -8,7 +8,7 @@ import silly.h1024h.utils.RedisUtil
 import silly.h1024h.utils.Util
 import javax.servlet.http.HttpServletResponse
 
-class SendCodeService(response: HttpServletResponse, map: Map<String, String>) : BaseService<User>(response, map, User()) {
+class SendCodeService(response: HttpServletResponse, map: Map<String, Any>) : BaseService<User>(response, map, User()) {
 
     override fun isEmpty(): Boolean {
         if (model.account.isEmpty() || model.email.isEmpty()) return failData(1018, ERROR_MAP[1018] ?: "")

@@ -9,7 +9,7 @@ import silly.h1024h.entity.ResData
 import silly.h1024h.entity.User
 import javax.servlet.http.HttpServletResponse
 
-class HotCountService(response: HttpServletResponse, map: Map<String, String>) : BaseService<HotData>(response, map, HotData()) {
+class HotCountService(response: HttpServletResponse, map: Map<String, Any>) : BaseService<HotData>(response, map, HotData()) {
     override fun isEmpty(): Boolean {
         if (model.type.isEmpty()) return failData(1018, ERROR_MAP[1018] ?: "")
         return true

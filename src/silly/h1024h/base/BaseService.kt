@@ -5,7 +5,7 @@ import org.apache.commons.beanutils.BeanUtils
 import silly.h1024h.utils.DesUtil
 import javax.servlet.http.HttpServletResponse
 
-abstract class BaseService<T>(private val response: HttpServletResponse, private var map: Map<String, String>, var model: T) {
+abstract class BaseService<T>(private val response: HttpServletResponse, private var map: Map<String, Any>, var model: T) {
 
     init {
         init()
