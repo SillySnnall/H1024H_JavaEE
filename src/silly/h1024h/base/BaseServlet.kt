@@ -28,21 +28,15 @@ abstract class BaseServlet<T> : HttpServlet() {
     override fun doGet(request: HttpServletRequest, response: HttpServletResponse) {
         try {
             config(request, response)
-//            val map = HashMap<String, Any>()
-//            val mapParam = request.parameterMap
-//            val set = mapParam.keys
             System.out.println("----------Start----------")
             System.out.println("URL:${request.requestURL}")
             val sign = request.getParameter("sign") ?: ""
             val timestamp = request.getParameter("timestamp") ?: ""
             val map = decryptData(sign, timestamp)// 解密
-//            for (aSet in set) {
-//                val key = aSet as String
-//                val value = request.getParameter(key)
-//                map[key] = value
-//                System.out.println("$key:$value")
-//            }
             System.out.println("----------End----------")
+
+
+
             if (getModel() != null) {
                 val model = getModel()
                 BeanUtils.populate(model, map)

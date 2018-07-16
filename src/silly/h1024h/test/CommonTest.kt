@@ -6,6 +6,8 @@ import silly.h1024h.dao.ResDataDao
 import silly.h1024h.dao.TypeListDao
 import silly.h1024h.utils.*
 import java.util.*
+import silly.h1024h.utils.DesUtil
+import sun.text.normalizer.UTF16.append
 
 
 class CommonTest {
@@ -111,8 +113,9 @@ class CommonTest {
     fun redis() {
         RedisUtil.getRu().setex("qwe", "123", 1800)
     }
+
     @Test
-    fun sign(){
+    fun sign() {
         val str = "哈哈哈,123!qweasdzc"
         val encode = DesUtil.encrypt(str)
         System.out.println("加密: $encode")
@@ -121,8 +124,28 @@ class CommonTest {
     }
 
     @Test
-    fun time(){
-        val uuid = System.currentTimeMillis()/1000
+    fun time() {
+        val uuid = System.currentTimeMillis() / 1000
         System.out.println("解密: $uuid")
+    }
+
+    @Test
+    fun postR() {
+        val mapOf = mapOf(
+                "ac" to "bind_email",
+                "account" to "12121212"
+        )
+        val sb = StringBuilder()
+        for (key in mapOf.keys) {
+            sb.append(key).append("=").append(mapOf[key]).append(",")
+        }
+        sb.deleteCharAt(sb.length - 1)
+        //密匙加密
+        val nowTime = java.lang.Long.toString(System.currentTimeMillis() / 1000)
+        var encryptData = DesUtil.encrypt(sb.toString(), nowTime)// 时间加密
+        encryptData = DesUtil.encrypt(encryptData)// key加密
+
+        val post = UrlReqUtil.post("http://192.168.100.168/app", "sign=$encryptData&timestamp=$nowTime")
+        System.out.println("post: $post")
     }
 }

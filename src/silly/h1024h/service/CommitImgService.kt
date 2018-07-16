@@ -5,20 +5,19 @@ import com.google.gson.reflect.TypeToken
 import silly.h1024h.common.Config.RES_PATH
 import silly.h1024h.dao.ResDataDao
 import silly.h1024h.entity.ResData
-import silly.h1024h.service.impl.CommitImgServiceImpl
 import silly.h1024h.utils.FileUtil
 import java.io.File
 
-class CommitImgService : CommitImgServiceImpl {
+class CommitImgService{
 
-    override fun isHaveCover(irDetails: String): Boolean {
+     fun isHaveCover(irDetails: String): Boolean {
 //        return imgResDao.findByIrCoverIrDetails(1, irDetails).isNotEmpty()
         return false
     }
 
     private val imgResDao = ResDataDao()
 
-    override fun saveImg(imgRes: ResData): Boolean {
+     fun saveImg(imgRes: ResData): Boolean {
 //        val findByDetails = imgResDao.findByDetails(imgRes.irDetails)
 //        // 判断是否有同组
 //        var irType = if (findByDetails.isEmpty()) {

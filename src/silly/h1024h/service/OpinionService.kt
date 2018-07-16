@@ -1,34 +1,36 @@
 package silly.h1024h.service
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import silly.h1024h.common.Config.RES_PATH
+import silly.h1024h.base.BaseService
+import silly.h1024h.common.ERROR_MAP
 import silly.h1024h.dao.OpinionDao
-import silly.h1024h.dao.ResDataDao
 import silly.h1024h.entity.Opinion
-import silly.h1024h.entity.ResData
-import silly.h1024h.service.impl.CommitImgServiceImpl
-import silly.h1024h.service.impl.OpinionServiceImpl
-import silly.h1024h.utils.FileUtil
 import silly.h1024h.utils.Util
-import java.io.File
+import javax.servlet.http.HttpServletResponse
 
-class OpinionService : OpinionServiceImpl {
-
-    private val opinionDao = OpinionDao()
-    override fun findOpinion(): String {
-        val opinion = opinionDao.findOpinion()
-        val builder = StringBuilder().append("[")
-        for (data in opinion) {
-            builder.append("{\"name\":\"${data.account}\",\"url\":\"${data.content}\",\"type\":\"${data.create_time}\"},")
-        }
-        builder.deleteCharAt(builder.length - 1).append("]")
-        return builder.toString()
+class OpinionService(response: HttpServletResponse, map: Map<String, String>) : BaseService<Opinion>(response, map, Opinion()) {
+    override fun isEmpty(): Boolean {
+        if (model.content.isEmpty() || model.account.isEmpty()) return failData(1018, ERROR_MAP[1018] ?: "")
+        return true
     }
 
-    override fun saveOpinion(opinion: Opinion): Boolean {
-        opinion.create_time = Util.getCurrentDate()
-        val params = arrayOf<Any>("'${opinion.account}'", "'${opinion.content}'", "'${opinion.create_time}'")
-        return opinionDao.saveOpinion(params)
+    override fun mainService(): Boolean {
+        // 创建时间
+        model.create_time = Util.getCurrentDate()
+        // 存储数据
+        val params = arrayOf<Any>("'${model.account}'", "'${model.content}'", "'${model.create_time}'")
+        if (!OpinionDao().saveOpinion(params)) return failData(1013, ERROR_MAP[1013] ?: "")
+
+        return successData("提交成功")
     }
+
+
+//    fun findOpinion(): String {
+//        val opinion = opinionDao.findOpinion()
+//        val builder = StringBuilder().append("[")
+//        for (data in opinion) {
+//            builder.append("{\"name\":\"${data.account}\",\"url\":\"${data.content}\",\"type\":\"${data.create_time}\"},")
+//        }
+//        builder.deleteCharAt(builder.length - 1).append("]")
+//        return builder.toString()
+//    }
 }

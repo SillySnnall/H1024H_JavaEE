@@ -1,15 +1,14 @@
 package silly.h1024h.service
 
 import silly.h1024h.common.Config
-import silly.h1024h.service.impl.UpdateServiceImpl
 import silly.h1024h.utils.Util
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 import javax.servlet.http.HttpServletRequest
 
-class UpdateService : UpdateServiceImpl {
-    override fun updateImg(request: HttpServletRequest): List<String> {
+class UpdateService {
+     fun updateImg(request: HttpServletRequest): List<String> {
 //        //获得磁盘文件条目工厂
 //        val factory = DiskFileItemFactory()
 ////        val imgDir = "/res/img"

@@ -1,20 +1,25 @@
 package silly.h1024h.service
 
+import silly.h1024h.base.BaseService
 import silly.h1024h.dao.TypeListDao
-import silly.h1024h.service.impl.TypeListServiceImpl
+import javax.servlet.http.HttpServletResponse
 
-class TypeListService : TypeListServiceImpl {
+class TypeListService(response: HttpServletResponse, map: Map<String, String>) : BaseService<Any>(response, map, Any()) {
+    override fun isEmpty(): Boolean {
+        return true
+    }
 
-    override fun getTypeList(): String {
-        val typeList = typeListDao.findTypeList()
-        if (typeList.isEmpty()) return ""
+    override fun mainService(): Boolean {
+        // 获取分类
+        val typeList = TypeListDao().findTypeList()
+        if (typeList.isEmpty()) return successData("[]")
+        // 组合数据
         val builder = StringBuilder().append("[")
         for (type in typeList) {
             builder.append("{\"name\":\"${type.name}\",\"type\":\"${type.type}\"},")
         }
         builder.deleteCharAt(builder.length - 1).append("]")
-        return builder.toString()
-    }
 
-    private val typeListDao = TypeListDao()
+        return successData(builder.toString())
+    }
 }
