@@ -2,7 +2,6 @@ package silly.h1024h.service
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import silly.h1024h.common.Config.RES_PATH
 import silly.h1024h.dao.ResDataDao
 import silly.h1024h.entity.ResData
 import silly.h1024h.utils.FileUtil

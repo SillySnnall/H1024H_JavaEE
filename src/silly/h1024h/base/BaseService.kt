@@ -27,27 +27,7 @@ abstract class BaseService<T>(private val response: HttpServletResponse, private
     abstract fun mainService(): Boolean
 
     /**
-     * 返回成功的Map数据
-     */
-    fun successData(map: Map<String, Any>) {
-        val writer = response.writer
-        writer.write(DesUtil.encrypt(Gson().toJson(SuccessMap(0, "msgok", map))))
-        writer.flush()
-        writer.close()
-    }
-
-    /**
-     * 返回成功的List数据
-     */
-    fun successData(list: List<Any>) {
-        val writer = response.writer
-        writer.write(DesUtil.encrypt(Gson().toJson(SuccessDataList(0, "msgok", list))))
-        writer.flush()
-        writer.close()
-    }
-
-    /**
-     * 返回成功的数据
+     * 返回成功的数据(加密)
      */
     fun successData(str: String): Boolean {
         val writer = response.writer
@@ -62,7 +42,7 @@ abstract class BaseService<T>(private val response: HttpServletResponse, private
 
 
     /**
-     * 返回失败的数据
+     * 返回失败的数据(加密)
      */
     fun failData(msg: Int, param: String): Boolean {
         val writer = response.writer

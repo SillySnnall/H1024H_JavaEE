@@ -1,6 +1,5 @@
 package silly.h1024h.service
 
-import silly.h1024h.common.Config
 import silly.h1024h.utils.Util
 import java.io.File
 import java.io.FileOutputStream

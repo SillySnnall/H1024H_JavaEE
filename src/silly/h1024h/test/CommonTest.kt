@@ -127,6 +127,13 @@ class CommonTest {
     fun time() {
         val uuid = System.currentTimeMillis() / 1000
         System.out.println("解密: $uuid")
+        val url = "https://img.aitaotu.cc:8089/Pics/2018/0514/05/01.jpg"
+        var fileName = "img.jpg"
+        if (url.contains("https://")) fileName = url.replace("https://", "")
+        if (url.contains("http://")) fileName = url.replace("http://", "")
+        fileName = fileName.substring(fileName.indexOf("/") + 1)
+        fileName = fileName.substring(0, fileName.lastIndexOf("/"))
+        System.out.println("解密: $fileName")
     }
 
     @Test

@@ -4,8 +4,12 @@
     <default-config>
         <!-- 配置JDBC 四个基本属性 -->
         <property name="driverClass">com.mysql.jdbc.Driver</property>
-        <property name="jdbcUrl">jdbc:mysql://localhost:3306/h1024h</property>
-        <!--<property name="jdbcUrl">jdbc:mysql://47.95.203.103:3306/h1024h</property>-->
+        <!-- 本地数据库 -->
+        <!--<property name="jdbcUrl">jdbc:mysql://localhost:3306/h1024h</property>-->
+        <!-- 正式数据库 -->
+        <property name="jdbcUrl">jdbc:mysql://47.95.203.103:3306/h1024h</property>
+        <!-- 马甲数据库 -->
+        <!--<property name="jdbcUrl">jdbc:mysql://47.95.203.103:3306/h1024h_vest</property>-->
         <property name="user">admin</property>
         <!--<property name="user">root</property>-->
         <property name="password">admin@123</property>

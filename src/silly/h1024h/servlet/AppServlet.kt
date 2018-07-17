@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import java.io.IOException
 import java.lang.reflect.InvocationTargetException
+import silly.h1024h.common.config
+import silly.h1024h.common.failData
 
 @WebServlet(name = "AppServlet", urlPatterns = ["/app"])
 class AppServlet : HttpServlet() {
@@ -64,16 +66,6 @@ class AppServlet : HttpServlet() {
     }
 
     /**
-     * Servlet相应配置
-     */
-    private fun config(request: HttpServletRequest, response: HttpServletResponse) {
-        request.characterEncoding = "utf-8"
-        response.contentType = "text/json;charset=utf-8"
-        response.characterEncoding = "utf-8"
-        response.addHeader("Access-Control-Allow-Origin", "*")
-    }
-
-    /**
      * 解密数据
      */
     private fun decryptData(sign: String, timestamp: String): Map<String, String> {
@@ -89,16 +81,5 @@ class AppServlet : HttpServlet() {
             }
         }
         return map
-    }
-
-    /**
-     * 返回失败的数据
-     */
-    fun failData(response: HttpServletResponse, msg: Int, param: String){
-        val writer = response.writer
-        val encrypt = DesUtil.encrypt(Gson().toJson(FailData(msg, param)))// 加密
-        writer.write(encrypt)
-        writer.flush()
-        writer.close()
     }
 }

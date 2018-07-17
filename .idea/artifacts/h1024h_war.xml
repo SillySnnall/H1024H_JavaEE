@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="h1024h:war">
     <output-path>$PROJECT_DIR$/out/artifacts/h1024h_war</output-path>
-    <root id="archive" name="h1024h_war.war">
+    <root id="archive" name="h1024h.war">
       <element id="artifact" artifact-name="H1024H_JavaEE:war exploded" />
     </root>
   </artifact>
